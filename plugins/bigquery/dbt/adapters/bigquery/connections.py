@@ -8,6 +8,7 @@ import google.auth.exceptions
 import google.cloud.bigquery
 import google.cloud.exceptions
 from google.api_core import retry, client_info
+from google.api_core.exceptions import ClientError
 from google.auth import impersonated_credentials
 from google.oauth2 import service_account
 
@@ -23,6 +24,10 @@ from dbt.version import __version__ as dbt_version
 
 from hologram.helpers import StrEnum
 
+class RateLimitExceeded(ClientError):
+    """Exception mapping a ``403 Forbidden`` response."""
+
+    code = 403
 
 BQ_QUERY_JOB_SPLIT = '-----Query Job SQL Follows-----'
 
@@ -36,7 +41,7 @@ REOPENABLE_ERRORS = (
 RETRYABLE_ERRORS = (
     google.cloud.exceptions.ServerError,
     google.cloud.exceptions.BadRequest,
-    google.cloud.exceptions.Forbidden,
+    RateLimitExceeded,
     ConnectionResetError,
     ConnectionError,
 )
