@@ -481,6 +481,7 @@ class _ErrorCounter(object):
 
 def _is_retryable(error):
     """Return true for errors that are unlikely to occur again if retried."""
+    logger.info(f"inside _is_retryable {error}")
     if isinstance(error, RETRYABLE_ERRORS):
         return True
     return False
