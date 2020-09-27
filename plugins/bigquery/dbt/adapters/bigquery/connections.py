@@ -303,7 +303,7 @@ class BigQueryConnectionManager(BaseConnectionManager):
             status = f'SCRIPT ({processed} processed)'
 
         elif query_job.statement_type in ['INSERT', 'DELETE', 'MERGE']:
-            status = '{} ({} rows, {} processed)'.format(
+            status = '{} ({} rows, {} processed - championj)'.format( #todo
                 query_job.statement_type,
                 format_rows_number(query_job.num_dml_affected_rows),
                 format_bytes(query_job.total_bytes_processed),
