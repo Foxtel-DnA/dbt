@@ -293,7 +293,7 @@ class BigQueryConnectionManager(BaseConnectionManager):
             client = conn.handle
             table = client.get_table(query_job.destination)
             processed = format_bytes(query_job.total_bytes_processed)
-            status = 'CREATE TABLE ({} rows, {} processed)'.format(
+            status = 'CREATE TABLE ({} rows, {} processed- championj)'.format(
                 format_rows_number(table.num_rows),
                 format_bytes(query_job.total_bytes_processed),
             )
