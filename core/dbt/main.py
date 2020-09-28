@@ -119,6 +119,8 @@ class RPCArgumentParser(DBTArgumentParser):
 def main(args=None):
     if args is None:
         args = sys.argv[1:]
+    print("[FOXTEL] Custom DBT version: https://github.com/Foxtel-DnA/dbt")
+
     with log_manager.applicationbound():
         try:
             results, succeeded = handle_and_check(args)
