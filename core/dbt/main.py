@@ -119,8 +119,6 @@ class RPCArgumentParser(DBTArgumentParser):
 def main(args=None):
     if args is None:
         args = sys.argv[1:]
-    logger.info("main INFO")
-    print("main PRINT")
     with log_manager.applicationbound():
         try:
             results, succeeded = handle_and_check(args)

@@ -8,7 +8,6 @@ import google.auth.exceptions
 import google.cloud.bigquery
 import google.cloud.exceptions
 from google.api_core import retry, client_info
-from google.api_core.exceptions import ClientError
 from google.auth import impersonated_credentials
 from google.oauth2 import service_account
 
@@ -289,7 +288,7 @@ class BigQueryConnectionManager(BaseConnectionManager):
             client = conn.handle
             table = client.get_table(query_job.destination)
             processed = format_bytes(query_job.total_bytes_processed)
-            status = 'CREATE TABLE ({} rows, {} processed- championj)'.format(
+            status = 'CREATE TABLE ({} rows, {} processed)'.format(
                 format_rows_number(table.num_rows),
                 format_bytes(query_job.total_bytes_processed),
             )
@@ -299,7 +298,7 @@ class BigQueryConnectionManager(BaseConnectionManager):
             status = f'SCRIPT ({processed} processed)'
 
         elif query_job.statement_type in ['INSERT', 'DELETE', 'MERGE']:
-            status = '{} ({} rows, {} processed - championj)'.format( #todo
+            status = '{} ({} rows, {} processed)'.format(
                 query_job.statement_type,
                 format_rows_number(query_job.num_dml_affected_rows),
                 format_bytes(query_job.total_bytes_processed),
