@@ -24,10 +24,6 @@ from dbt.version import __version__ as dbt_version
 
 from hologram.helpers import StrEnum
 
-class RateLimitExceeded(ClientError):
-    """Exception mapping a ``403 Forbidden`` response."""
-
-    code = 403
 
 BQ_QUERY_JOB_SPLIT = '-----Query Job SQL Follows-----'
 
@@ -41,7 +37,7 @@ REOPENABLE_ERRORS = (
 RETRYABLE_ERRORS = (
     google.cloud.exceptions.ServerError,
     google.cloud.exceptions.BadRequest,
-    RateLimitExceeded,
+    google.cloud.exceptions.Forbidden,  # This is added to handle mis-coded rateLimitExceeded (403 Forbidden)
     ConnectionResetError,
     ConnectionError,
 )
@@ -481,9 +477,6 @@ class _ErrorCounter(object):
 
 def _is_retryable(error):
     """Return true for errors that are unlikely to occur again if retried."""
-    logger.info(f"inside _is_retryable {error}")
-    print("_is_retryable PRINT")
-    logger.error("_is_retryable ERROR")
     if isinstance(error, RETRYABLE_ERRORS):
         return True
     return False
