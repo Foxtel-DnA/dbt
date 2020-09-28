@@ -36,7 +36,6 @@ REOPENABLE_ERRORS = (
 RETRYABLE_ERRORS = (
     google.cloud.exceptions.ServerError,
     google.cloud.exceptions.BadRequest,
-    google.cloud.exceptions.Forbidden,  # This is added to handle mis-coded rateLimitExceeded (403 Forbidden)
     ConnectionResetError,
     ConnectionError,
 )
@@ -477,5 +476,7 @@ class _ErrorCounter(object):
 def _is_retryable(error):
     """Return true for errors that are unlikely to occur again if retried."""
     if isinstance(error, RETRYABLE_ERRORS):
+        return True
+    elif isinstance(error, google.api_core.exceptions.Forbidden) and any(e['reason'] == 'rateLimitExceeded' for e in error.errors):
         return True
     return False
