@@ -8,7 +8,6 @@
 - Added state and defer arguments to the RPC client, matching the CLI ([#2678](https://github.com/fishtown-analytics/dbt/issues/2678), [#2736](https://github.com/fishtown-analytics/dbt/pull/2736))
 - Added schema and dbt versions to JSON artifacts ([#2670](https://github.com/fishtown-analytics/dbt/issues/2670), [#2767](https://github.com/fishtown-analytics/dbt/pull/2767))
 - Added ability to snapshot hard-deleted records (opt-in with `invalidate_hard_deletes` config option). ([#249](https://github.com/fishtown-analytics/dbt/issues/249), [#2749](https://github.com/fishtown-analytics/dbt/pull/2749))
-- Added retry support for rateLimitExceeded error from BigQuery ([#6434](https://github.com/fishtown-analytics/dbt/issues/2795))
 
 Contributors:
 - [@joelluijmes](https://github.com/joelluijmes) ([#2749](https://github.com/fishtown-analytics/dbt/pull/2749))
@@ -22,6 +21,7 @@ Contributors:
 ### Features
 - Specify all three logging levels (`INFO`, `WARNING`, `ERROR`) in result logs for commands `test`, `seed`, `run`, `snapshot` and `source snapshot-freshness` ([#2680](https://github.com/fishtown-analytics/dbt/pull/2680), [#2723](https://github.com/fishtown-analytics/dbt/pull/2723))
 - Added "reports" ([#2730](https://github.com/fishtown-analytics/dbt/issues/2730), [#2752](https://github.com/fishtown-analytics/dbt/pull/2752))
+- Added retry support for rateLimitExceeded error from BigQuery, ([#2795](https://github.com/fishtown-analytics/dbt/issues/2795), [#2796](https://github.com/fishtown-analytics/dbt/issues/2796))
 
 ### Docs
 - Add Report nodes ([docs#135](https://github.com/fishtown-analytics/dbt-docs/issues/135), [docs#136](https://github.com/fishtown-analytics/dbt-docs/pull/136))
@@ -29,6 +29,7 @@ Contributors:
 Contributors:
 - [@tpilewicz](https://github.com/tpilewicz) ([#2723](https://github.com/fishtown-analytics/dbt/pull/2723))
 - [@heisencoder](https://github.com/heisencoder) ([#2739](https://github.com/fishtown-analytics/dbt/issues/2739))
+- [@championj-foxtel](https://github.com/championj-foxtel) ([#2796](https://github.com/fishtown-analytics/dbt/issues/2796))
 
 
 ## dbt 0.18.0 (September 03, 2020)
